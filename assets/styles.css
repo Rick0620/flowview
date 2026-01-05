@@ -1,0 +1,131 @@
+/* 1. Reset y Variables para mantener consistencia */
+* {
+  /* Tamaño final sumando contenido, padding y border */
+  box-sizing: border-box;
+}
+
+p {
+  text-wrap: pretty;
+  /* Si la palabra grande no logra caber en la siguiente línea vacía, entonces se romperá. Ello permite un mejor ajuste de texto */
+  overflow-wrap: break-word;
+}
+
+html {
+  font-size: 16px; /* Base para los rem */
+  /* Comportamiento ara clics en enlaces internos */
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #4c63af;
+  margin: 0;
+  font-family: sans-serif; /* Fuente base */
+  /* Espacio entre línea relativo a la fuente del elemento */
+  line-height: 1.6;
+}
+
+/* 2. Tipografía con rem (Accesible) */
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+
+/* 3. Layout Principal (Contenedor flexible) */
+header,
+#main-container,
+#introduction,
+#features,
+#how-it-works,
+#about-and-tech-stack {
+  margin: 0 auto;
+  width: 90%; /* Usa porcentajes para que no toque los bordes en móvil */
+  max-width: 800px; /* Límite para que no se estire demasiado en PC */
+}
+
+header {
+  color: white;
+  padding: 3rem 1rem; /* Padding vertical en rem */
+  text-align: center;
+}
+
+/* 4. Introducción (Flexbox responsivo) */
+#introduction {
+  display: flex;
+  flex-wrap: wrap; /* Para que bajen en móvil */
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.intro-card {
+  flex: 1 1 300px; /* Crece, encoge y su base (de ancho al tener un contenedor con 'flex-direction: row' por defecto) son 300px. */
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  min-height: 120px; /* min-height en lugar de height fijo */
+  background-color: rgb(150, 228, 228);
+  border-radius: 8px;
+}
+
+/* 5. Grid de Características (Automático) */
+.grid-features {
+  display: grid;
+  /* Crea tantas columnas como quepan (mínimo 250px). Si sobra espacio, se estiran por igual (1fr) para llenar la fila. Si no caben, saltan a una nueva fila. */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.feature {
+  padding: 1.5rem;
+  background-color: rgb(150, 228, 228);
+  color: black;
+  border-radius: 8px;
+}
+
+.feature-title {
+  text-align: center;
+}
+
+/* 6. Listas y detalles */
+.step-item,
+.tech-item,
+.about {
+  text-align: left;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+#footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.1); /* Un tono más oscuro que el fondo */
+  color: white;
+  text-align: center;
+}
+
+/* 7. Media Queries */
+/* Ajuste de jerarquía visual para Desktop: 
+   Se incrementa el tamaño del h1 y el aire del header para mantener el impacto 
+   visual y evitar que la "carta de presentación" se vea pequeña en pantallas anchas. */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  header {
+    padding: 5rem 1rem; /* Un poco más de aire lateral para PC */
+  }
+}
+
+/* @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+} */
